@@ -1,0 +1,25 @@
+{
+  "name": "oop-team-profile-generator",
+  "version": "1.0.0",
+  "description": "## Purpose to generate a webpage that displays team's basic info so that their info is quickly accessable.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davsav16/oop-team-profile-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davsav16/oop-team-profile-generator/issues"
+  },
+  "homepage": "https://github.com/davsav16/oop-team-profile-generator#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
+}
