@@ -9,7 +9,6 @@ const[name, github] = teamDataArgs;
 
 const pageHTML = generatePage(name, github);
 
-
 fs.writeFile('./index.html', generatePage(pageHTML), err => {
     if (err) throw err;
 
