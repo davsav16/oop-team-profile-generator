@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const generatePage = require('./src/page-template');
+const fs = require('fs');
+const generatePage = require('./src/page-template');
 
 // const pageHTML = generatePage(name, github);
 
@@ -69,71 +69,76 @@ const promptManager = () => {
 };
 
 const promptEngineer = engineerData => {
+console.log(`
+==========
+Add a New Eng
+=========
+`);
+
     if (!engineerData.teamMem) {
         engineerData.teamMem = [];
-    }
-
+    };
     return inquirer
         .prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: "What is the engineer's name? (Required)",
-            validate: nameInput => {
-                if (nameInput) {
-                    return true;
-                } else {
-                    console.log("Please enter the engineer's name!");
-                    return false;
+            {
+                type: 'input',
+                name: 'name',
+                message: "What is the engineer's name? (Required)",
+                validate: nameInput => {
+                    if (nameInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter the engineer's name!");
+                        return false;
+                    }
                 }
-            }
-        },
-        {
-            type: 'input',
-            name: 'empID',
-            message: "Enter the engineer's employee ID.",
-            validate: githubInput => {
-                if (githubInput) {
-                    return true;
-                } else {
-                    console.log("Please enter the engineer's Employee ID!");
-                    return false;
+            },
+            {
+                type: 'input',
+                name: 'empID',
+                message: "Enter the engineer's employee ID.",
+                validate: githubInput => {
+                    if (githubInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter the engineer's Employee ID!");
+                        return false;
+                    }
                 }
-            }
-        },
-        {
-            type: 'input',
-            name: 'email',
-            message: "Enter the engineer's email address.",
-            validate: githubInput => {
-                if (githubInput) {
-                    return true;
-                } else { 
-                    console.log("Please enter the engineer's email address!");
-                    return false;
+            },
+            {
+                type: 'input',
+                name: 'email',
+                message: "Enter the engineer's email address.",
+                validate: githubInput => {
+                    if (githubInput) {
+                        return true;
+                    } else { 
+                        console.log("Please enter the engineer's email address!");
+                        return false;
+                    }
                 }
-            }
-        },
-        {
-            type: 'input',
-            name: 'Github',
-            message: "Enter the engineer's Github Username.",
-            validate: githubInput => {
-                if (githubInput) {
-                    return true;
-                } else {
-                    console.log("Please enter the engineer's Github Username!");
-                    return false;
+            },
+            {
+                type: 'input',
+                name: 'Github',
+                message: "Enter the engineer's Github Username.",
+                validate: githubInput => {
+                    if (githubInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter the engineer's Github Username!");
+                        return false;
+                    }
                 }
+            },
+            {
+                type: 'confirm',
+                name: 'confirmAddEngineer',
+                message: 'Would you like to enter another engineer?',
+                default: false
             }
-        },
-        {
-            type: 'confirm',
-            name: 'confirmAddEngineer',
-            message: 'Would you like to enter another engineer?',
-            default: false
-        }
-  
+    
     ])
     .then(devData => {
         engineerData.teamMem.push(devData);
@@ -142,7 +147,7 @@ const promptEngineer = engineerData => {
         } else {
             return engineerData;
         }
-    });
+     });
 };
 
 const promptIntern = () => {
@@ -204,11 +209,11 @@ const promptIntern = () => {
 };
 
 promptManager()
-    .then(answers => console.log(answers))
     .then(promptEngineer)
     .then(engineerData => {
         console.log(engineerData);
     })
-    .then(engineerAnswers => console.log(engineerAnswers))
-    .then(promptIntern)
-    .then(internAnswers => console.log(internAnswers));
+
+    // .then(engineerAnswers => console.log(engineerAnswers))
+    // .then(promptIntern)
+    // .then(internAnswers => console.log(internAnswers));
