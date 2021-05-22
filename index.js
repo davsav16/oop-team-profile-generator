@@ -137,88 +137,88 @@ const promptEngineer = engineerData => {
      });
 };
 
-// const promptIntern = internData => {
+const promptIntern = internData => {
 
-//     if (!internData.teamMem) {
-//         internData.teamMem = [];
-//     }
-//     return inquirer
-//         .prompt([
-//             {
-//                 type: 'input',
-//                 name: 'name',
-//                 message: "What is the intern's name? (Required)",
-//                 validate: nameInput => {
-//                     if (nameInput) {
-//                         return true;
-//                     } else {
-//                         console.log("Please enter the intern's name!");
-//                         return false;
-//                     }
-//                 }
-//             },
-//             {
-//                 type: 'input',
-//                 name: 'empID',
-//                 message: "Enter the intern's employee ID.",
-//                 validate: githubInput => {
-//                     if (githubInput) {
-//                         return true;
-//                     } else {
-//                         console.log("Please enter the intern's Employee ID!");
-//                         return false;
-//                     }
-//                 }
-//             },
-//             {
-//                 type: 'input',
-//                 name: 'email',
-//                 message: "Enter the intern's email address.",
-//                 validate: githubInput => {
-//                     if (githubInput) {
-//                         return true;
-//                     } else {
-//                         console.log("Please enter the intern's email address!");
-//                         return false;
-//                     }
-//                 }
-//             },
-//             {
-//                 type: 'input',
-//                 name: 'school',
-//                 message: "Enter the intern's school",
-//                 validate: githubInput => {
-//                     if (githubInput) {
-//                         return true;
-//                     } else {
-//                         console.log("Please enter the intern's school!");
-//                         return false;
-//                     }
-//                 }
-//             },
-//             {
-//                 type: 'confirm',
-//                 name: 'confirmAddIntern',
-//                 message: 'Would you like to enter another Intern?',
-//                 default: false
-//             }
+    if (!internData.internMem) {
+        internData.internMem = [];
+    }
+    return inquirer
+        .prompt([
+            {
+                type: 'input',
+                name: 'nameI',
+                message: "What is the intern's name? (Required)",
+                validate: nameInput => {
+                    if (nameInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter the intern's name!");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'empIDI',
+                message: "Enter the intern's employee ID.",
+                validate: githubInput => {
+                    if (githubInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter the intern's Employee ID!");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'emailI',
+                message: "Enter the intern's email address.",
+                validate: githubInput => {
+                    if (githubInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter the intern's email address!");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'input',
+                name: 'school',
+                message: "Enter the intern's school",
+                validate: githubInput => {
+                    if (githubInput) {
+                        return true;
+                    } else {
+                        console.log("Please enter the intern's school!");
+                        return false;
+                    }
+                }
+            },
+            {
+                type: 'confirm',
+                name: 'confirmAddIntern',
+                message: 'Would you like to enter another Intern?',
+                default: false
+            }
     
-//     ])
-//     .then(smData => {
-//         internData.teamMem.push(smData);
-//         if (smData.confirmAddIntern) {
-//             return promptIntern(internData);
-//         } else {
-//             return internData;
-//         }
-//     });
-// };
+    ])
+    .then(smData => {
+        internData.internMem.push(smData);
+        if (smData.confirmAddIntern) {
+            return promptIntern(internData);
+        } else {
+            return internData;
+        }
+    });
+};
 
 promptManager()
     .then(promptEngineer)
-    // .then(promptIntern)
-    .then(engineerData => {
-        const pageHTML = generatePage(engineerData);
+    .then(promptIntern)
+    .then((engineerData,internData) => {
+        const pageHTML = generatePage(engineerData,internData);
         fs.writeFile('./dist/index.html', pageHTML, err => {
             if (err) throw new Error(err);
       

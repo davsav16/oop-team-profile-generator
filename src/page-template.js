@@ -22,9 +22,34 @@ const generateEngineer = engineerArr => {
         `;
 };
 
+const generateIntern = internArr => {
+ 
+    const internHtmlArr = internArr.map(({ nameI, empIDI, emailI, school }) => {
+        return `
+        <div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">${nameI}</h5>
+          <h6 class="position">Intern</h6>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">ID: ${empIDI}</li>
+          <li class="list-group-item">Email: <a href="mailto:${emailI}">${emailI}</a></li>
+          <li class="list-group-item">School: ${school}</li>
+        </ul>
+        </div>
+            `;
+    });
+
+    return `
+        <div class="row">
+            ${internHtmlArr}
+        <div>
+        `;
+};
+
 module.exports = templateData => {
-    const { teamMem, ...manager } = templateData
-    console.log(templateData)
+    const { teamMem, internMem, ...manager } = templateData
+    console.log("templateData", templateData)
 
     return `
     <!DOCTYPE html>
@@ -61,6 +86,7 @@ module.exports = templateData => {
                 </div>
             </div>
             ${generateEngineer(teamMem)}
+            ${generateIntern(teamMem)}
         </div>
     </body>
 </html>
