@@ -1,0 +1,34 @@
+.nav {
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    margin: 10px;
+}
+
+.mainTitle {
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+.card-body {
+    background-color: blue;
+}
+
+.card-title {
+    color: white;
+    text-shadow: 2px 2px black;
+}
+
+.position {
+    color: white;
+    text-shadow: 2px 2px black;
+}
+

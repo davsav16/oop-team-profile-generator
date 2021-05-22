@@ -68,8 +68,13 @@ const promptManager = () => {
     ]);
 };
 
-const promptEngineer = () => {
-    return inquirer.prompt([
+const promptEngineer = engineerData => {
+    if (!engineerData.teamMem) {
+        engineerData.teamMem = [];
+    }
+
+    return inquirer
+        .prompt([
         {
             type: 'input',
             name: 'name',
@@ -103,7 +108,7 @@ const promptEngineer = () => {
             validate: githubInput => {
                 if (githubInput) {
                     return true;
-                } else {
+                } else { 
                     console.log("Please enter the engineer's email address!");
                     return false;
                 }
@@ -122,8 +127,22 @@ const promptEngineer = () => {
                 }
             }
         },
+        {
+            type: 'confirm',
+            name: 'confirmAddEngineer',
+            message: 'Would you like to enter another engineer?',
+            default: false
+        }
   
-    ]);
+    ])
+    .then(devData => {
+        engineerData.teamMem.push(devData);
+        if (devData.confirmAddEngineer) {
+            return promptEngineer(engineerData);
+        } else {
+            return engineerData;
+        }
+    });
 };
 
 const promptIntern = () => {
@@ -187,6 +206,9 @@ const promptIntern = () => {
 promptManager()
     .then(answers => console.log(answers))
     .then(promptEngineer)
+    .then(engineerData => {
+        console.log(engineerData);
+    })
     .then(engineerAnswers => console.log(engineerAnswers))
     .then(promptIntern)
     .then(internAnswers => console.log(internAnswers));
