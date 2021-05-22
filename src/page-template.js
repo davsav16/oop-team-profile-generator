@@ -1,4 +1,24 @@
-module.exports = (name, github) => {
+const generateEngineer = engineerArr => {
+    const engineerHtmlArr = engineerArr.map(({ nameE, empIDE, emailE, github }) => {
+        return `
+            <ul>${nameE}<ul>
+            <ul>${empIDE}<ul>
+            <ul>${emailE}<ul>
+            <ul>${github}<ul>
+            `;
+    });
+
+    return `
+        <section>
+        ${engineerHtmlArr}
+        <section>
+        `;
+};
+
+module.exports = templateData => {
+    const { teamMem, ...manager } = templateData
+    console.log(templateData)
+
     return `
     <!DOCTYPE html> 
     <html lang="en"> 
@@ -10,11 +30,13 @@ module.exports = (name, github) => {
     </head>
   
     <body>
-      <h1>${name}</h1>
-      <h2>${empID}<h2>
-      <h2>${email}<h2>
-      <h2>${officeNum}<h2>
-      <h2><a href="https://github.com/${github}">Github</a></h2>
+      <h1>${manager.nameM}</h1>
+      <h2>${manager.empIDM}<h2>
+      <h2>${manager.emailM}<h2>
+      <h2>${manager.officeNum}<h2>
+       
+      ${generateEngineer(teamMem)}
+      
     </body>
     </html>
     `;
