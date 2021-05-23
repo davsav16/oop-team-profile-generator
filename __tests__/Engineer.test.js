@@ -1,5 +1,8 @@
-const checkIfEqual = require('../lib/Engineer');
+const Engineer = require('../lib/Engineer');
 
-test('checks if 10 is equal to 10', () => {
-  expect(checkIfEqual(10, 10)).toBe(true);
-});
+test('See if git hub is a string', () => {
+    let github = ""
+    const engineer = new Engineer("David", 2, "email", github);
+
+    expect(engineer.github).toEqual(expect.any(String));
+})

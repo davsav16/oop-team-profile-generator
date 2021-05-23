@@ -1,3 +1,5 @@
-const Start = require('./lib/Start')
+const initializeEmployee = require('./lib/Start')
    
-new Start().makeTeam();
+initializeEmployee();
+
+

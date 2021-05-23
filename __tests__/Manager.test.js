@@ -1,5 +1,8 @@
-const checkIfEqual = require('../lib/Manager');
+const Manager = require('../lib/Manager');
 
-test('checks if 10 is equal to 10', () => {
-  expect(checkIfEqual(10, 10)).toBe(true);
-});
+test('Check that officeNum is a number', () => {
+    let office = 3
+    const manager = new Manager("David", 2, "email", office);
+
+    expect(manager.office).toEqual(expect.any(Number));
+})
