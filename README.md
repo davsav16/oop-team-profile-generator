@@ -1,4 +1,4 @@
-# oop-team-profile-generator
+# Team Profile Penerator
 
 ## Purpose to generate a webpage that displays team's basic info so that their info is quickly accessable.
 
