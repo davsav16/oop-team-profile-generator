@@ -4,7 +4,10 @@ const Intern = require('./lib/Intern');
 const Engineer = require('./lib/Engineer');
 const Manager = require('./lib/Manager');
 const generatePage = require('./src/page-template')
-const team = [];
+const managerArr = [];
+const engineerArr = [];
+const internArr = [];
+
 
 
 const initializeEmployee = function() {
@@ -71,7 +74,7 @@ const initializeEmployee = function() {
                 .then(data => {
                     const manager = new Manager(profileQue.name, profileQue.id,
                         profileQue.email, data.office)
-                    team.push(manager)
+                    managerArr.push(manager)
                     console.log(manager)
                 })
                 .then(() => ask());
@@ -87,7 +90,7 @@ const initializeEmployee = function() {
                 .then(data => {
                     const engineer = new Engineer(profileQue.name, profileQue.id,
                         profileQue.email, data.github)
-                    team.push(engineer)
+                    engineerArr.push(engineer)
                 })
                 .then(() => ask());
 
@@ -102,7 +105,7 @@ const initializeEmployee = function() {
                 .then(data => {
                     const intern = new Intern(profileQue.name, profileQue.id,
                         profileQue.email, data.school)
-                    team.push(intern)
+                    internArr.push(intern)
                 })
                 .then(() => ask())
         }
@@ -120,7 +123,12 @@ const ask = function () {
             if (data.another === true) {
                 initializeEmployee();
             } else {
-                console.log(team)
+                // console.log(team)
+           var htmlcode = generatePage(managerArr, engineerArr, internArr)
+           console.log(htmlcode)
+           fs.writeFile('./dist/index.html', htmlcode, function(err) {
+               if(err) throw err;
+           })
             }
         }) 
 }
